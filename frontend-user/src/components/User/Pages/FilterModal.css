@@ -1,0 +1,617 @@
+/* Filter Modal Modern Design */
+
+.filter-modal-backdrop {
+  position: fixed;
+  inset: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(5px);
+
+  z-index: 2000;
+  padding: 1rem;
+
+  overflow: hidden;
+
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.filter-modal {
+  background: #ffffff;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 900px;
+
+  height: 90vh;
+  max-height: 90vh;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
+
+  box-shadow: 0 20px 60px rgba(53, 9, 15, 0.35);
+
+  border: 2px solid #4a0e17;
+
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================= */
+/* Header */
+/* ============================= */
+
+.filter-modal-header {
+  flex-shrink: 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  padding: 2rem 2rem 1rem;
+
+  border-bottom: 2px solid #4a0e17;
+
+  background: #4a0e17;
+
+  border-radius: 14px 14px 0 0;
+}
+
+.filter-header-content {
+  flex: 1;
+}
+
+.filter-icon-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 0.5rem;
+}
+
+.filter-header-icon {
+  font-size: 1.5rem;
+
+  color: #4a0e17;
+
+  background: #f7ede0;
+
+  padding: 10px;
+
+  border-radius: 12px;
+}
+
+.filter-modal-header h2 {
+  color: #ffffff;
+
+  font-weight: 700;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.filter-modal-header p {
+  color: rgba(255, 255, 255, 0.85);
+
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.filter-modal-close {
+  background: #f7ede0;
+
+  border: 2px solid #f7ede0;
+
+  border-radius: 50%;
+
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  color: #4a0e17;
+
+  font-size: 1.1rem;
+
+  transition: all 0.3s ease;
+
+  flex-shrink: 0;
+}
+
+.filter-modal-form {
+  display: flex;
+  flex-direction: column;
+
+  flex: 1;
+  min-height: 0;
+
+  overflow: hidden;
+}
+
+.filter-modal-close:hover {
+  background: #35090f;
+
+  color: #ffffff;
+
+  border-color: #ffffff;
+
+  transform: rotate(90deg);
+}
+
+/* ============================= */
+/* Body */
+/* ============================= */
+
+.filter-modal-body {
+  padding: 1.5rem 2rem;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 2rem;
+
+  flex: 1;
+  min-height: 0;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  overscroll-behavior: contain;
+
+  background: #ffffff;
+}
+
+.filter-section {
+  background: #f7ede0;
+
+  border-radius: 12px;
+
+  padding: 1.5rem;
+
+  border-left: 5px solid #4a0e17;
+
+  border-top: 1px solid #eadfe5;
+  border-right: 1px solid #eadfe5;
+  border-bottom: 1px solid #eadfe5;
+}
+
+.filter-section-title {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  color: #4a0e17;
+
+  font-weight: 700;
+
+  margin: 0 0 1.5rem 0;
+
+  font-size: 1.1rem;
+}
+
+.section-icon {
+  font-size: 1.1rem;
+
+  color: #4a0e17;
+
+  opacity: 1;
+}
+
+.filter-row {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 1.5rem;
+}
+
+.filter-field {
+  display: flex;
+
+  flex-direction: column;
+}
+
+.filter-label {
+  font-weight: 600;
+
+  color: #2c252a;
+
+  margin-bottom: 0.75rem;
+
+  font-size: 0.95rem;
+}
+
+.input-with-icon {
+  position: relative;
+}
+
+.input-icon {
+  position: absolute;
+
+  left: 15px;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  color: #4a0e17;
+
+  font-size: 1rem;
+
+  z-index: 2;
+}
+
+.filter-input {
+  width: 100%;
+
+  padding: 0.875rem 1rem 0.875rem 3rem;
+
+  border: 2px solid #eadfe5;
+
+  border-radius: 10px;
+
+  font-size: 0.95rem;
+
+  transition: all 0.3s ease;
+
+  background: #ffffff;
+
+  color: #2c252a;
+
+  appearance: none;
+
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%234a0e17' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+
+  background-position: right 1rem center;
+
+  background-repeat: no-repeat;
+
+  background-size: 16px 12px;
+
+  padding-right: 3rem;
+}
+
+.filter-input:focus {
+  outline: none;
+
+  border-color: #4a0e17;
+
+  box-shadow: 0 0 0 3px rgba(74, 14, 23, 0.15);
+
+  background-color: #ffffff;
+}
+
+.filter-input::placeholder {
+  color: #6f666b;
+}
+
+/* ============================= */
+/* Footer */
+/* ============================= */
+
+.filter-modal-footer {
+  flex-shrink: 0;
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  padding: 1.5rem 2rem;
+
+  border-top: 2px solid #4a0e17;
+
+  background: #f7ede0;
+
+  border-radius: 0 0 14px 14px;
+
+  gap: 12px;
+
+  flex-wrap: wrap;
+}
+
+.save-search-inline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.save-search-input {
+  border: 1px solid #d9a7b6;
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 13px;
+  min-width: 160px;
+}
+
+.save-search-confirm-btn {
+  padding: 8px 16px !important;
+}
+
+.filter-action-buttons {
+  display: flex;
+
+  gap: 1rem;
+}
+
+.filter-btn {
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 0.875rem 1.5rem;
+
+  border: none;
+
+  border-radius: 10px;
+
+  font-weight: 600;
+
+  font-size: 0.95rem;
+
+  cursor: pointer;
+
+  transition: all 0.3s ease;
+
+  text-decoration: none;
+}
+
+/* ============================= */
+/* Primary Button */
+/* ============================= */
+
+.filter-btn-primary {
+  background: #4a0e17;
+
+  color: #ffffff;
+
+  box-shadow: 0 4px 15px rgba(74, 14, 23, 0.30);
+}
+
+.filter-btn-primary:hover:not(:disabled) {
+  background: #35090f;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 8px 25px rgba(74, 14, 23, 0.40);
+}
+
+.filter-btn-primary:disabled {
+  opacity: 0.7;
+
+  cursor: not-allowed;
+
+  transform: none;
+}
+
+/* ============================= */
+/* Outline Button */
+/* ============================= */
+
+.filter-btn-outline {
+  background: #ffffff;
+
+  border: 2px solid #4a0e17;
+
+  color: #4a0e17;
+}
+
+.filter-btn-outline:hover {
+  background: #4a0e17;
+
+  color: #ffffff;
+
+  transform: translateY(-1px);
+}
+
+/* ============================= */
+/* Secondary Button */
+/* ============================= */
+
+.filter-btn-secondary {
+  background: #35090f;
+
+  color: #ffffff;
+}
+
+.filter-btn-secondary:hover {
+  background: #4a0e17;
+
+  transform: translateY(-1px);
+}
+
+.btn-icon {
+  font-size: 0.9rem;
+}
+
+/* ============================= */
+/* Loading Spinner */
+/* ============================= */
+
+.loading-spinner-small {
+  width: 16px;
+
+  height: 16px;
+
+  border: 2px solid transparent;
+
+  border-top: 2px solid #ffffff;
+
+  border-radius: 50%;
+
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* ============================= */
+/* Responsive Design */
+/* ============================= */
+
+@media (max-width: 768px) {
+  .filter-modal {
+    max-width: 95%;
+
+    margin: 1rem;
+  }
+
+  .filter-modal-header {
+    padding: 1.5rem 1.5rem 1rem;
+
+    flex-direction: column;
+
+    gap: 1rem;
+  }
+
+  .filter-modal-body {
+    padding: 1rem 1.5rem;
+
+    gap: 1.5rem;
+  }
+
+  .filter-section {
+    padding: 1.25rem;
+  }
+
+  .filter-row {
+    grid-template-columns: 1fr;
+
+    gap: 1rem;
+  }
+
+  .filter-modal-footer {
+    flex-direction: column;
+
+    gap: 1rem;
+
+    padding: 1.5rem;
+  }
+
+  .filter-action-buttons {
+    width: 100%;
+
+    justify-content: stretch;
+  }
+
+  .filter-action-buttons .filter-btn {
+    flex: 1;
+
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .filter-modal {
+    max-width: 100%;
+
+    margin: 0.5rem;
+
+    border-radius: 12px;
+  }
+
+  .filter-modal-header,
+  .filter-modal-body,
+  .filter-modal-footer {
+    padding: 1rem;
+  }
+
+  .filter-section {
+    padding: 1rem;
+  }
+
+  .filter-icon-title {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 0.5rem;
+  }
+
+  .filter-header-icon {
+    padding: 8px;
+  }
+
+  .filter-modal-header h2 {
+    font-size: 1.3rem;
+  }
+
+  .filter-input {
+    padding-left: 2.5rem;
+  }
+
+  .input-icon {
+    left: 12px;
+
+    font-size: 0.9rem;
+  }
+}
+
+/* ============================= */
+/* Scrollbar Styling */
+/* ============================= */
+
+.filter-modal::-webkit-scrollbar {
+  width: 6px;
+}
+
+.filter-modal::-webkit-scrollbar-track {
+  background: #f7ede0;
+
+  border-radius: 0 16px 16px 0;
+}
+
+.filter-modal::-webkit-scrollbar-thumb {
+  background: #4a0e17;
+
+  border-radius: 3px;
+}
+
+.filter-modal::-webkit-scrollbar-thumb:hover {
+  background: #35090f;
+}
+
+/* Prevent background page from scrolling while modal is open */
+
+body.filter-modal-open {
+  overflow: hidden;
+}

@@ -1,0 +1,169 @@
+.pp-page {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 32px 20px 60px;
+}
+
+.pp-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.pp-header-icon {
+  font-size: 32px;
+  color: #8a1c3b;
+}
+
+.pp-header h1 {
+  margin: 0;
+  font-size: 24px;
+  color: #3a2f3a;
+}
+
+.pp-header p {
+  margin: 2px 0 0;
+  color: #8a7a87;
+  font-size: 14px;
+}
+
+.pp-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 20px 22px;
+  box-shadow: 0 6px 24px rgba(138, 90, 114, 0.1);
+  margin-bottom: 18px;
+}
+
+.pp-card h2 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  color: #3a2f3a;
+  margin: 0 0 14px;
+}
+
+.pp-card label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #6b5a68;
+  margin-bottom: 6px;
+}
+
+.pp-card label.pp-mt {
+  margin-top: 14px;
+}
+
+.pp-card input,
+.pp-card select,
+.pp-card textarea {
+  width: 100%;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 9px 12px;
+  font-size: 14px;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.pp-card input:focus,
+.pp-card select:focus,
+.pp-card textarea:focus {
+  outline: none;
+  border-color: #8a1c3b;
+}
+
+.pp-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 18px;
+}
+
+@media (max-width: 560px) {
+  .pp-grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pp-chip-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.pp-chip {
+  border: 1px solid #eee;
+  background: #fff;
+  border-radius: 20px;
+  padding: 7px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #6b5a68;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.pp-chip:hover {
+  border-color: #d9a7b6;
+}
+
+.pp-chip.selected {
+  background: #8a1c3b;
+  border-color: #8a1c3b;
+  color: #fff;
+}
+
+.pp-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.pp-save-btn,
+.pp-reset-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 15px;
+  cursor: pointer;
+  border: none;
+}
+
+.pp-save-btn {
+  flex: 2;
+  background: #8a1c3b;
+  color: #fff;
+}
+
+.pp-reset-btn {
+  flex: 1;
+  background: #f5eef0;
+  color: #8a1c3b;
+}
+
+.pp-save-btn:disabled,
+.pp-reset-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.pp-skeleton {
+  height: 420px;
+  border-radius: 16px;
+  background: linear-gradient(90deg, #f0e5ec 25%, #f7eef4 37%, #f0e5ec 63%);
+  background-size: 400% 100%;
+  animation: pp-shimmer 1.4s ease infinite;
+}
+
+@keyframes pp-shimmer {
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0 50%; }
+}

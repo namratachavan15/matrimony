@@ -1,0 +1,20 @@
+.membership-card { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; background: linear-gradient(135deg, #fff, #fbf3f6); border: 1px solid #eadfe5; border-left: 4px solid #d4b585; border-radius: 14px; padding: 16px 20px; margin: 14px auto; max-width: 1280px; box-shadow: 0 4px 14px rgba(74,14,23,.06); }
+.membership-card.is-free { border-left-color: #b8a9b0; }
+.mc-main { flex: 1 1 220px; min-width: 0; }
+.mc-label { font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: #8a7a82; }
+.mc-main h3 { margin: 2px 0 4px; color: #4a0e17; font-size: 1.25rem; }
+.mc-main p { margin: 4px 0 0; color: #6b5b62; font-size: .88rem; }
+.mc-crown { color: #c9a24b; }
+.mc-usage { flex: 1 1 260px; display: grid; gap: 10px; min-width: 0; }
+.mc-bar-top { display: flex; justify-content: space-between; font-size: .8rem; color: #6b5b62; margin-bottom: 3px; }
+.mc-track { height: 8px; background: #f0e6ea; border-radius: 99px; overflow: hidden; }
+.mc-fill { height: 100%; background: linear-gradient(90deg, #8b2a45, #c9a24b); border-radius: 99px; }
+.mc-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.mc-primary, .mc-secondary { border-radius: 9px; padding: 9px 16px; font-weight: 600; font-size: .85rem; cursor: pointer; }
+.mc-primary { background: #4a0e17; color: #fff; border: 1px solid #4a0e17; }
+.mc-secondary { background: #fff; color: #4a0e17; border: 1px solid #d9c6cf; }
+.mem-badge { display: inline-block; margin-top: 4px; padding: 2px 10px; border-radius: 99px; font-size: .72rem; font-weight: 700; }
+.mem-badge-silver { background: #eceff3; color: #4a5563; }
+.mem-badge-gold { background: #fbefc9; color: #8a6a12; }
+.mem-badge-premium { background: #4a0e17; color: #f3d98b; }
+@media (max-width: 600px) { .membership-card { margin: 10px; padding: 14px; } .mc-actions { width: 100%; } .mc-actions button { flex: 1; } }

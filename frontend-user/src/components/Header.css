@@ -1,0 +1,1104 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap");
+
+:root {
+  --primary: #4a0e17;
+  --primary-dark: #35090f;
+  --primary-light: #f7ede0;
+  --text-dark: #2c252a;
+  --text-soft: #6f666b;
+  --border: #eadfe5;
+  --white: #ffffff;
+  --danger: #b84d55;
+  --danger-light: #fff3f3;
+}
+
+/* ================================
+   HEADER
+================================ */
+
+.main-header {
+  position: sticky;
+  top: 0;
+  z-index: 3000;
+  width: 100%;
+  height: 72px;
+  background: #4a0e17;
+  border-bottom: 1px solid #5b1730;
+  backdrop-filter: blur(14px);
+  font-family: "DM Sans", sans-serif;
+}
+
+.header-container {
+  width: min(1280px, calc(100% - 40px));
+  height: 100%;
+ 
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+}
+
+/* ================================
+   BRAND
+================================ */
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-left: 20px;
+  cursor: pointer;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.brand-logo {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #e4d2da;
+  border-radius: 10px;
+
+  background: var(--primary-light);
+  color: var(--primary);
+
+  transition: all 0.2s ease;
+}
+
+.brand:hover .brand-logo {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.logo-icon {
+  width: 20px;
+  height: 20px;
+  stroke-width: 1.8;
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.brand-title {
+ color: #ffffff;
+  font-family: "Playfair Display", serif;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+
+.brand-subtitle {
+  margin-top: 4px;
+
+  color: var(--primary);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 2.2px;
+  text-transform: uppercase;
+}
+
+/* ================================
+   NAVIGATION
+================================ */
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+
+  flex: 1;
+}
+
+.nav-item,
+.filter-button {
+  height: 40px;
+  padding: 0 13px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: transparent;
+  color: rgba(255, 255, 255, 0.85);
+
+  font-family: "DM Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+  white-space: nowrap;
+
+  transition:
+    background 0.18s ease,
+    color 0.18s ease;
+}
+
+.nav-item:hover {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+.nav-icon {
+  width: 17px;
+  height: 17px;
+  stroke-width: 1.8;
+}
+
+.filter-button {
+  margin-left: 7px;
+
+  border: 1px solid #d9c1cc;
+  color: var(--primary);
+  background: #fff;
+}
+
+.filter-button:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+
+.filter-icon {
+  width: 16px;
+  height: 16px;
+  stroke-width: 1.8;
+}
+
+/* ================================
+   HEADER RIGHT
+================================ */
+
+.header-right {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  gap: 8px;
+  min-width: 0;
+}
+
+/* ================================
+   USER BUTTON
+================================ */
+
+.user-menu-wrapper {
+  position: relative;
+}
+
+.user-button {
+  min-width: 0;
+  max-width: 120px;
+  height: 44px;
+  padding: 4px 8px;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  border: 1px solid transparent;
+  border-radius: 10px;
+
+  background: transparent;
+  color: #ffffff;
+
+  cursor: pointer;
+
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease;
+}
+
+.user-button:hover,
+.user-button-active {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.25;
+  overflow: hidden;
+}
+
+.user-name {
+  max-width: 60px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  color: #ffffff !important;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.user-role {
+  color: #ffffff !important;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.user-caret {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+
+  color: #81777d;
+  stroke-width: 1.8;
+
+  transition: transform 0.2s ease;
+}
+
+.rotate-caret {
+  transform: rotate(180deg);
+}
+
+/* ================================
+   DROPDOWN
+================================ */
+
+.user-dropdown {
+  position: absolute;
+  top: calc(100% + 9px);
+  right: 0;
+
+  width: 205px;
+  padding: 7px;
+
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 11px;
+
+  box-shadow:
+    0 12px 35px rgba(44, 37, 42, 0.12),
+    0 3px 8px rgba(44, 37, 42, 0.05);
+
+  animation: dropdownFade 0.16s ease;
+}
+
+@keyframes dropdownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* IMPORTANT:
+   Icon + Text SAME LINE
+*/
+
+.dropdown-item {
+  width: 100%;
+  min-height: 42px;
+  padding: 0 11px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  border: none;
+  border-radius: 7px;
+
+  background: transparent;
+  color: var(--text-dark);
+
+  font-family: "DM Sans", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+
+  text-align: left;
+  cursor: pointer;
+
+  white-space: nowrap;
+
+  transition:
+    background 0.18s ease,
+    color 0.18s ease;
+}
+
+.dropdown-item:hover {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+.dropdown-icon {
+  width: 18px;
+  height: 18px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 18px;
+
+  color: #786e74;
+}
+
+.dropdown-icon svg {
+  width: 17px;
+  height: 17px;
+  stroke-width: 1.8;
+}
+
+.dropdown-text {
+  display: inline-flex;
+  align-items: center;
+
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.dropdown-divider {
+  height: 1px;
+  margin: 5px 4px;
+
+  background: #eee5e9;
+}
+
+.logout-item {
+  color: #62585d;
+}
+
+.logout-item:hover {
+  background: var(--danger-light);
+  color: var(--danger);
+}
+
+.logout-item:hover .dropdown-icon {
+  color: var(--danger);
+}
+
+/* ================================
+   MOBILE BUTTON
+================================ */
+
+.mobile-menu-btn,
+.mobile-close-btn {
+  display: none;
+}
+
+/* ================================
+   MOBILE BACKDROP
+================================ */
+
+.mobile-backdrop {
+  position: fixed;
+  inset: 0;
+
+  z-index: 2998;
+
+  background: rgba(30, 23, 27, 0.45);
+  backdrop-filter: blur(3px);
+}
+
+/* ================================
+   RESPONSIVE
+================================ */
+
+/* =========================================
+   TABLET + LAPTOP + MOBILE
+   Hamburger menu
+========================================= */
+
+@media (max-width: 1200px) {
+
+  /* Header */
+
+  .header-container {
+    width: calc(100% - 28px);
+    gap: 12px;
+  }
+
+
+  /* =========================================
+     HAMBURGER BUTTON
+  ========================================= */
+
+  .mobile-menu-btn {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    max-width: 42px;
+
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    margin-left: 7px;
+    padding: 0;
+
+    border: 1px solid #7a1f35;
+    border-radius: 9px;
+
+    background: #4a0e17;
+
+    cursor: pointer;
+
+    z-index: 3002;
+  }
+
+  .mobile-menu-btn span {
+    display: block;
+
+    width: 18px;
+    height: 2px;
+
+    background: #ffffff;
+
+    border-radius: 2px;
+  }
+
+
+  /* =========================================
+     MOBILE SIDEBAR
+  ========================================= */
+
+  .nav-menu {
+    position: fixed;
+
+    top: 0;
+    left: -320px;
+
+    width: 300px;
+    max-width: 85vw;
+    height: 100vh;
+
+    padding: 76px 18px 25px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+
+    gap: 5px;
+/* RESPONSIVE */
+    background: #4a0e17;
+
+    border-right: 1px solid #6b2639;
+
+    box-shadow:
+      10px 0 35px rgba(0, 0, 0, 0.30);
+
+    transition: left 0.25s ease;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    z-index: 3001;
+  }
+
+  .nav-menu.mobile-open {
+    left: 0;
+  }
+
+
+  /* =========================================
+     SIDEBAR MENU ITEMS
+  ========================================= */
+
+  .nav-item,
+  .filter-button {
+
+    width: 100%;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    padding: 0 14px;
+
+    border-radius: 8px;
+
+    background: transparent;
+
+    color: #ffffff !important;
+
+    font-family: "DM Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+
+    flex-shrink: 0;
+
+    cursor: pointer;
+
+    border: none;
+  }
+
+
+  /* Hover */
+
+  .nav-item:hover {
+    background: #f7ede0;
+
+    color: #4a0e17 !important;
+  }
+
+  .nav-item:hover .nav-icon {
+    color: #4a0e17;
+  }
+
+
+  /* =========================================
+     SIDEBAR ICON
+  ========================================= */
+
+  .nav-icon {
+    width: 18px;
+    height: 18px;
+
+    margin-right: 2px;
+
+    flex-shrink: 0;
+
+    color: #f7dce4;
+
+    stroke-width: 1.9;
+  }
+
+
+  /* =========================================
+     FILTER BUTTON
+  ========================================= */
+
+  .filter-button {
+    margin-top: 8px;
+
+    background: #f7ede0;
+
+    border: 1px solid #e4d2da;
+
+    color: #4a0e17 !important;
+  }
+
+  .filter-button .filter-icon {
+    color: #4a0e17;
+  }
+
+  .filter-button:hover {
+    background: #ffffff;
+
+    border-color: #ffffff;
+
+    color: #4a0e17 !important;
+  }
+
+
+  /* =========================================
+     CLOSE BUTTON
+  ========================================= */
+
+  .mobile-close-btn {
+
+    position: absolute;
+
+    top: 18px;
+    right: 18px;
+
+    width: 38px;
+    height: 38px;
+
+    display: flex !important;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 1px solid #7a1f35;
+    border-radius: 8px;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    color: #ffffff;
+
+    cursor: pointer;
+
+    z-index: 3002;
+  }
+
+  .mobile-close-btn:hover {
+    background: #f7ede0;
+
+    color: #4a0e17;
+
+    border-color: #f7ede0;
+  }
+
+
+  /* =========================================
+     USER BUTTON
+  ========================================= */
+
+  .user-button {
+    max-width: 110px;
+  }
+
+  .user-name {
+    max-width: 55px;
+  }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 600px) {
+
+  .header-container {
+    width: calc(100% - 12px);
+    gap: 4px;
+  }
+
+
+  /* Brand */
+
+  .brand {
+    margin-left: 4px;
+
+    gap: 8px;
+
+    min-width: 0;
+
+    flex: 1 1 auto;
+  }
+
+  .brand-title {
+    font-size: 17px;
+  }
+
+  .brand-subtitle {
+    font-size: 7px;
+    letter-spacing: 1.8px;
+  }
+
+  .brand-logo {
+    width: 38px;
+    height: 38px;
+
+    flex: 0 0 38px;
+  }
+
+
+  /* Header right */
+
+  .header-right {
+    flex: 0 0 auto;
+
+    gap: 4px;
+  }
+
+
+  /* Hide username */
+
+  .user-info,
+  .user-caret {
+    display: none;
+  }
+
+
+  /* User avatar */
+
+  .user-button {
+    min-width: 42px;
+    max-width: 42px;
+
+    width: 42px;
+    height: 42px;
+
+    flex: 0 0 42px;
+
+    padding: 3px;
+
+    justify-content: center;
+  }
+
+  .user-avatar {
+    width: 34px;
+    height: 34px;
+
+    font-size: 12px;
+  }
+
+
+  /* Hamburger */
+
+  .mobile-menu-btn {
+    width: 42px;
+    height: 42px;
+
+    min-width: 42px;
+    max-width: 42px;
+
+    flex: 0 0 42px;
+
+    margin-left: 0;
+  }
+
+
+  /* Dropdown */
+
+  .user-dropdown {
+    right: -5px;
+
+    width: 205px;
+  }
+
+}
+
+
+/* =========================================
+   VERY SMALL MOBILE
+========================================= */
+
+@media (max-width: 380px) {
+
+  .brand-subtitle {
+    display: none;
+  }
+
+  .brand-title {
+    font-size: 16px;
+  }
+
+  .brand-logo {
+    width: 36px;
+    height: 36px;
+
+    flex: 0 0 36px;
+  }
+
+  .user-avatar {
+    width: 32px;
+    height: 32px;
+
+    font-size: 11px;
+  }
+
+  .user-button,
+  .mobile-menu-btn {
+
+    width: 40px;
+    min-width: 40px;
+    max-width: 40px;
+
+    height: 40px;
+
+    flex-basis: 40px;
+  }
+
+  .header-right {
+    gap: 2px;
+  }
+
+}
+
+
+/* =========================================
+   USERNAME WHITE
+========================================= */
+
+.main-header .user-button {
+  color: #ffffff !important;
+}
+
+.main-header .user-button .user-info .user-name {
+  color: #ffffff !important;
+
+  -webkit-text-fill-color: #ffffff !important;
+
+  opacity: 1 !important;
+}
+
+.main-header .user-button .user-info .user-role {
+  color: #ffffff !important;
+
+  -webkit-text-fill-color: #ffffff !important;
+
+  opacity: 1 !important;
+}
+
+/* =========================================================
+   FINAL HEADER RESPONSIVE FIX
+   Tablet + Mobile
+========================================================= */
+
+@media screen and (max-width: 1200px) {
+
+  /* Header container */
+  .main-header .header-container {
+    width: calc(100% - 24px) !important;
+    gap: 8px !important;
+  }
+
+  /* Logo / Brand */
+  .main-header .brand {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+    margin-left: 5px !important;
+    flex-shrink: 1 !important;
+  }
+
+  .main-header .brand-logo {
+    flex-shrink: 0 !important;
+  }
+
+  /* Right side - chat, notification, user, hamburger */
+  .main-header .header-right {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 8px !important;
+    flex: 0 0 auto !important;
+    min-width: max-content !important;
+    margin-left: auto !important;
+  }
+
+  .main-header .header-right > * {
+    flex-shrink: 0 !important;
+    position: relative !important;
+  }
+
+  /* User */
+  .main-header .user-menu-wrapper {
+    flex-shrink: 0 !important;
+  }
+
+  /* Hamburger */
+  .main-header .mobile-menu-btn {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+
+    width: 42px !important;
+    min-width: 42px !important;
+    max-width: 42px !important;
+    height: 42px !important;
+
+    flex: 0 0 42px !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    align-items: center !important;
+    justify-content: center !important;
+    flex-direction: column !important;
+    gap: 5px !important;
+
+    background: #4a0e17 !important;
+    border: 1px solid #d9c1cc !important;
+    border-radius: 9px !important;
+
+    position: relative !important;
+    z-index: 9999 !important;
+  }
+
+  .main-header .mobile-menu-btn span {
+    display: block !important;
+    width: 20px !important;
+    height: 2px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    border-radius: 2px !important;
+  }
+}
+
+
+/* =========================================================
+   TABLET
+   601px - 768px
+========================================================= */
+
+@media screen and (min-width: 601px) and (max-width: 768px) {
+
+  .main-header {
+    height: 68px !important;
+  }
+
+  .main-header .header-container {
+    width: calc(100% - 20px) !important;
+    gap: 8px !important;
+  }
+
+  .main-header .brand {
+    margin-left: 5px !important;
+    gap: 8px !important;
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
+  }
+
+  .main-header .brand-logo {
+    width: 38px !important;
+    height: 38px !important;
+    flex: 0 0 38px !important;
+  }
+
+  .main-header .brand-title {
+    font-size: 17px !important;
+  }
+
+  .main-header .header-right {
+    gap: 8px !important;
+    margin-left: auto !important;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+   0px - 600px
+========================================================= */
+
+@media screen and (max-width: 600px) {
+
+  .main-header .header-container {
+    width: calc(100% - 14px) !important;
+    gap: 5px !important;
+  }
+
+  .main-header .brand {
+    margin-left: 3px !important;
+    gap: 7px !important;
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+  }
+
+  .main-header .brand-logo {
+    width: 36px !important;
+    height: 36px !important;
+    flex: 0 0 36px !important;
+  }
+
+  .main-header .brand-title {
+    font-size: 16px !important;
+  }
+
+  .main-header .header-right {
+    gap: 5px !important;
+    flex: 0 0 auto !important;
+    min-width: max-content !important;
+  }
+
+  /* Hide user name */
+  .main-header .user-info,
+  .main-header .user-caret {
+    display: none !important;
+  }
+
+  /* User icon */
+  .main-header .user-button {
+    width: 40px !important;
+    min-width: 40px !important;
+    max-width: 40px !important;
+    height: 40px !important;
+    flex: 0 0 40px !important;
+    padding: 3px !important;
+    justify-content: center !important;
+  }
+
+  .main-header .user-avatar {
+    width: 34px !important;
+    height: 34px !important;
+    font-size: 12px !important;
+  }
+
+  /* Hamburger */
+  .main-header .mobile-menu-btn {
+    width: 40px !important;
+    min-width: 40px !important;
+    max-width: 40px !important;
+    height: 40px !important;
+    flex: 0 0 40px !important;
+  }
+
+  .main-header .user-dropdown {
+    right: -5px !important;
+    width: 205px !important;
+  }
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+   0px - 380px
+========================================================= */
+
+@media screen and (max-width: 380px) {
+
+  .main-header .brand-subtitle {
+    display: none !important;
+  }
+
+  .main-header .brand-title {
+    font-size: 14px !important;
+  }
+
+  .main-header .brand-logo {
+    width: 34px !important;
+    height: 34px !important;
+    flex: 0 0 34px !important;
+  }
+
+  .main-header .user-avatar {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 11px !important;
+  }
+
+  .main-header .user-button,
+  .main-header .mobile-menu-btn {
+    width: 38px !important;
+    min-width: 38px !important;
+    max-width: 38px !important;
+    height: 38px !important;
+    flex: 0 0 38px !important;
+  }
+
+  .main-header .header-right {
+    gap: 3px !important;
+  }
+}
+

@@ -1,0 +1,122 @@
+/* :root {
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #a78bda;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #9670c9;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #3d2e3a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #a78bda;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+} */
+
+/* ============================================================
+   GLOBAL RESPONSIVE SAFETY NET
+   Generic, low-risk rules so existing pages behave decently on
+   phones/tablets without a full per-page rewrite. Only activates
+   at <=768px / <=480px so desktop layouts are untouched.
+   ============================================================ */
+
+html, body {
+  overflow-x: hidden;
+}
+
+/* Prevents the "hamburger flickers in/out on refresh" bug: without this,
+   a vertical scrollbar appearing once async page data finishes loading
+   shrinks the viewport by its width (~15-17px), which can flip a header
+   media query right after first paint. Reserving the gutter up front
+   means that width never changes. */
+html {
+  overflow-y: scroll;
+  scrollbar-gutter: stable;
+}
+
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  /* Any table without its own mobile handling gets a horizontal
+     scrollbar instead of blowing out the page width. */
+  table {
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .container,
+  .container-fluid {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Common bug: an input/select/textarea/button with a fixed px width
+     (e.g. width: 300px) overflows a narrow phone screen. */
+  input,
+  select,
+  textarea,
+  button {
+    max-width: 100%;
+  }
+}

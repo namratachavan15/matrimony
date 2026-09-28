@@ -1,0 +1,216 @@
+.contact-requests-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px 20px 60px;
+  min-height: 60vh;
+  font-family: var(--font-body, sans-serif);
+}
+
+.contact-requests-header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.contact-requests-header h1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: var(--font-display, serif);
+  color: var(--brand-primary-dark, #8a5a72);
+  font-size: 26px;
+  margin-bottom: 6px;
+}
+
+.contact-requests-header p {
+  color: var(--charcoal-700, #6b5a68);
+  font-size: 14px;
+}
+
+.contact-requests-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 24px;
+}
+
+.contact-requests-tabs button {
+  border: 1px solid rgba(138, 90, 114, 0.25);
+  background: #fff;
+  color: var(--brand-primary-dark, #8a5a72);
+  padding: 8px 22px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.15s ease;
+}
+
+.contact-requests-tabs button.active {
+  background: var(--brand-primary, #a8677f);
+  color: #fff;
+  border-color: var(--brand-primary, #a8677f);
+}
+
+.contact-requests-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-request-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--ivory-50, #fdfbf8);
+  border-radius: var(--radius-lg, 16px);
+  box-shadow: var(--shadow-soft, 0 6px 20px rgba(138, 90, 114, 0.08));
+  padding: 14px 18px;
+}
+
+.contact-request-avatar {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #eee;
+  flex-shrink: 0;
+}
+
+.contact-request-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.contact-request-name {
+  font-weight: 700;
+  color: var(--charcoal-900, #2f2530);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.contact-request-verified {
+  color: #2f9e6e;
+  font-size: 13px;
+}
+
+.contact-request-meta {
+  font-size: 13px;
+  color: var(--charcoal-600, #7c6c78);
+  margin-top: 2px;
+}
+
+.contact-request-time {
+  font-size: 12px;
+  color: var(--charcoal-500, #9a8a97);
+  margin-top: 2px;
+}
+
+.contact-request-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.cr-accept-btn,
+.cr-decline-btn,
+.cr-cancel-btn,
+.cr-message-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.cr-accept-btn {
+  background: #2f9e6e;
+  color: #fff;
+}
+
+.cr-decline-btn {
+  background: #f1e2e6;
+  color: #a8677f;
+}
+
+.cr-cancel-btn {
+  background: #f1e2e6;
+  color: #a8677f;
+}
+
+.cr-message-btn {
+  background: var(--brand-primary, #a8677f);
+  color: #fff;
+}
+
+.cr-accept-btn:disabled,
+.cr-decline-btn:disabled,
+.cr-cancel-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.cr-status-pill {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.cr-status-pill.accepted {
+  background: rgba(47, 158, 110, 0.12);
+  color: #2f9e6e;
+}
+
+.cr-status-pill.declined {
+  background: rgba(200, 60, 60, 0.1);
+  color: #c83c3c;
+}
+
+.cr-status-pill.cancelled {
+  background: rgba(120, 120, 120, 0.1);
+  color: #777;
+}
+
+.contact-requests-empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--charcoal-600, #7c6c78);
+}
+
+.contact-requests-empty-icon {
+  font-size: 36px;
+  color: var(--brand-primary, #a8677f);
+  opacity: 0.5;
+  margin-bottom: 12px;
+}
+
+.contact-requests-skeleton {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-request-skeleton-row {
+  height: 78px;
+  border-radius: 16px;
+  background: linear-gradient(90deg, #f1e9ee 25%, #f8f2f5 37%, #f1e9ee 63%);
+  background-size: 400% 100%;
+  animation: cr-shimmer 1.4s ease infinite;
+}
+
+@keyframes cr-shimmer {
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0 50%; }
+}

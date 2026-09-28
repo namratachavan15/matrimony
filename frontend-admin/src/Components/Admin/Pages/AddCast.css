@@ -1,0 +1,24 @@
+.cast-btn-wrapper {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;         /* ✅ allows wrapping on small screens */
+  }
+  
+  .cast-btn {
+    min-width: 160px;        /* ✅ PREVENTS shrinking */
+    padding: 10px 18px;     /* ✅ stable height */
+    white-space: nowrap;   /* ✅ prevents text breaking */
+    flex: 1;                /* ✅ equal width on mobile */
+  }
+  
+  /* ✅ Mobile special handling */
+  @media (max-width: 576px) {
+    .cast-btn-wrapper {
+      flex-direction: column;
+    }
+  
+    .cast-btn {
+      width: 100%;
+    }
+  }
+  

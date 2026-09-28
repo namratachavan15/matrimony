@@ -1,0 +1,25 @@
+Premium UI re-theme applied (light pastel palette).
+
+Only CSS/UI styling was changed. React functionality, routes, state,
+API calls and component logic were left unchanged.
+
+Theme: soft blush pink + dusty rose + warm cream + subtle lavender and
+peach-gold accents on soft-white surfaces. All backgrounds, buttons,
+cards, forms, gallery, profile, filter modal, stories, testimonials,
+navigation and footer were converted from a deep maroon/burgundy scheme
+to this light, airy palette while keeping the existing layout, class
+names, and CSS-variable architecture intact.
+
+Typography: Playfair Display for headings, Inter for body text
+(already wired up via Google Fonts in index.html).
+
+Key changes:
+- Global color remap of every hex/rgba brand color in src/**/*.css
+  (and a few inline JSX styles) to the new pastel palette.
+- Header, MainHeader, mobile nav, and Footer/MainFooter rebuilt from
+  dark "glass on wine" styling to a light "glass on cream" styling
+  (dark plum text on soft backgrounds instead of white text on a
+  near-black/maroon gradient).
+- AllUsers hero banner and other accent banners softened to a lighter
+  dusty-rose gradient.
+- Verified with `npm run build` — builds cleanly with no errors.

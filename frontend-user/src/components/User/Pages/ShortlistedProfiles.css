@@ -1,0 +1,186 @@
+.shortlist-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 20px 60px;
+  min-height: 60vh;
+  font-family: var(--font-body, sans-serif);
+}
+
+.shortlist-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.shortlist-header h1 {
+  font-family: var(--font-display, serif);
+  color: var(--brand-primary-dark, #8a5a72);
+  font-size: 28px;
+  margin-bottom: 6px;
+}
+
+.shortlist-header p {
+  color: var(--charcoal-700, #6b5a68);
+}
+
+.shortlist-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.shortlist-card {
+  background: var(--ivory-50, #fdfbf8);
+  border-radius: var(--radius-lg, 20px);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft, 0 10px 30px rgba(138, 90, 114, 0.1));
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.shortlist-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-medium, 0 16px 40px rgba(138, 90, 114, 0.16));
+}
+
+.shortlist-card-image {
+  position: relative;
+  height: 200px;
+}
+
+.shortlist-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.shortlist-star-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--brand-gold-600, #d4b585);
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.shortlist-star-btn:hover {
+  background: #fff;
+  transform: scale(1.08);
+}
+
+.shortlist-card-body {
+  padding: 16px;
+}
+
+.shortlist-card-body h3 {
+  font-family: var(--font-display, serif);
+  color: var(--charcoal-900, #3a2f3a);
+  margin: 0 0 4px;
+  font-size: 18px;
+}
+
+.mini-verified-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  vertical-align: middle;
+  margin-left: 8px;
+  background: #e6f7ee;
+  color: #1b9c5a;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+  border: 1px solid #b7ecce;
+}
+
+.shortlist-meta {
+  color: var(--charcoal-500, #8a7a87);
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.shortlist-detail {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--charcoal-700, #6b5a68);
+  margin-bottom: 6px;
+}
+
+.shortlist-card-actions {
+  display: flex;
+  gap: 8px;
+  padding: 0 16px 16px;
+}
+
+.shortlist-like-btn,
+.shortlist-view-btn {
+  flex: 1;
+  padding: 9px 10px;
+  border-radius: var(--radius-sm, 8px);
+  border: 1px solid var(--brand-primary, #a8677f);
+  background: transparent;
+  color: var(--brand-primary, #a8677f);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.shortlist-like-btn.liked {
+  background: var(--brand-primary, #a8677f);
+  color: #fff;
+}
+
+.shortlist-view-btn {
+  background: var(--brand-primary, #a8677f);
+  color: #fff;
+}
+
+.shortlist-like-btn:hover,
+.shortlist-view-btn:hover {
+  opacity: 0.9;
+}
+
+.shortlist-empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--charcoal-700, #6b5a68);
+}
+
+.shortlist-empty-icon {
+  font-size: 40px;
+  color: var(--brand-gold-500, #e0c398);
+  margin-bottom: 12px;
+}
+
+.shortlist-skeleton-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.shortlist-skeleton-card {
+  height: 340px;
+  border-radius: var(--radius-lg, 20px);
+  background: linear-gradient(90deg, #f0e5ec 25%, #f7eef4 37%, #f0e5ec 63%);
+  background-size: 400% 100%;
+  animation: shimmer 1.4s ease infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0 50%; }
+}

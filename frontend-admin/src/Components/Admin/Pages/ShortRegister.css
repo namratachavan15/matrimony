@@ -1,0 +1,28 @@
+.short-register-container {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  }
+  
+  .short-register-card {
+    width: 100%;
+    max-width: 450px;
+    border-radius: 12px;
+    padding: 2rem;
+    background-color: #ffffff;
+    transition: transform 0.3s ease;
+  }
+  
+  .short-register-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .short-register-card input,
+  .short-register-card select {
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+  }
+  
+  .short-register-card button {
+    padding: 0.75rem;
+    font-weight: 600;
+  }
+  

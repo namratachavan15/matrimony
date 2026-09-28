@@ -1,0 +1,394 @@
+/* 
+
+
+.custom-navbar {
+  height: 80px;
+  background-color: #c68fa6 !important; 
+  color: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.custom-navbar .navbar-brand {
+  font-size: 22px;
+  letter-spacing: 0.5px;
+  color: white !important;
+}
+
+.custom-navbar .nav-link {
+  font-weight: 500;
+  margin: 0 8px;
+  color: white;
+}
+
+.custom-navbar .nav-link:hover {
+  color: #ffe0e0;
+}
+
+.custom-navbar .active-link {
+  color: white !important;
+  font-weight: bold;
+  border-bottom: 3px solid #ffc107;
+}
+
+
+.custom-navbar .navbar-collapse {
+  
+  width: 100%;
+}
+
+.custom-navbar .navbar-toggler {
+  border-color: white;
+}
+
+.custom-navbar .navbar-toggler-icon {
+  filter: invert(1);
+} 
+
+@media (max-width: 991px) {
+  .custom-navbar .navbar-collapse {
+    position: fixed; 
+    top: 80px;
+    left: -100%; 
+    width: 280px; 
+    max-width: 80%; 
+    background-color: #c68fa6;
+    padding: 20px;
+    border-radius: 0 12px 12px 0;
+    transition: left 0.3s ease;
+    z-index: 1500;
+    box-shadow: 8px 0 30px rgba(0, 0, 0, 0.25);
+    height:100vh;
+  }
+
+  .custom-navbar .navbar-collapse.show {
+    left: 0; 
+  }
+
+  .custom-navbar .navbar-nav {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .custom-navbar .nav-link {
+    width: 100%;
+    text-align: left;
+    padding: 12px 20px;
+    border-radius: 8px;
+  }
+
+ 
+  .mobile-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1400;
+  }
+} */
+
+
+/* Header Variables */
+:root {
+  --primary-color: #4a0e17;
+  --secondary-color: #6d4ca0;
+  --accent-color: #e8cf9e;
+  --dark-bg: #3d2e3a;
+  --light-text: #ffffff;
+  --dark-text: #40323d;
+  --gradient-primary: linear-gradient(110deg, #4a0e17 0%, #5b1730 55%, #4a0e17 100%);
+  --gradient-accent: linear-gradient(135deg, #ffffff, #e8cf9e);
+  --shadow-sm: 0 4px 12px rgba(168, 103, 127, 0.08);
+  --shadow-md: 0 8px 24px rgba(168, 103, 127, 0.12);
+  --transition: all 0.3s ease;
+}
+
+/* Navbar Base */
+.navbar {
+  background: var(--gradient-primary);
+  backdrop-filter: blur(10px);
+  height: 90px;
+  transition: var(--transition);
+  padding: 0;
+  z-index: 1030;
+}
+
+.navbar-scrolled {
+  height: 70px;
+  background: rgba(74, 14, 23, 0.96);
+  backdrop-filter: blur(15px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Logo */
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.logo-main {
+  font-size: 28px;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 1px;
+  line-height: 1;
+}
+
+.logo-sub {
+  font-size: 12px;
+  font-weight: 400;
+  color: #e8cf9e;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* Navigation Items */
+.navbar-nav {
+  gap: 10px;
+}
+
+.nav-link {
+  color: #ffffff !important;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 8px 20px !important;
+  border-radius: 25px;
+  transition: var(--transition);
+  position: relative;
+  background: transparent;
+  border: none;
+  text-transform: capitalize;
+}
+
+.nav-link:hover {
+  color: #e8cf9e !important;
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-1px);
+}
+
+.nav-link.active {
+  color: white !important;
+  color: #4a0e17 !important;
+  background: var(--gradient-accent);
+  box-shadow: 0 4px 15px rgba(232, 207, 158, 0.4);
+}
+
+.active-indicator {
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 6px;
+  background: #fff;
+  border-radius: 50%;
+}
+
+/* Toggler Button */
+.navbar-toggler {
+  border: 2px solid rgba(180, 122, 145, 0.3);
+  border-radius: 8px;
+  padding: 8px 12px;
+  transition: var(--transition);
+}
+
+.navbar-toggler:focus {
+  box-shadow: 0 0 0 3px rgba(224, 195, 152, 0.3);
+}
+
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.9)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.navbar-toggler.active .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(224, 195, 152, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M6 6L24 24M6 24L24 6'/%3e%3c/svg%3e");
+}
+
+/* Login Button */
+.btn-login {
+  background: rgba(255, 255, 255, 0.18);
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  color: white;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: var(--transition);
+  box-shadow: 0 4px 15px rgba(224, 195, 152, 0.3);
+}
+
+.btn-login:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(224, 195, 152, 0.4);
+}
+
+.login-icon {
+  font-size: 16px;
+}
+
+/* Mobile Menu */
+@media (max-width: 991px) {
+  .navbar-collapse {
+    position: fixed;
+    top: 90px;
+    left: 0;
+    right: 0;
+    background: rgba(74, 14, 23, 0.98);
+    backdrop-filter: blur(20px);
+    padding: 20px;
+    transform: translateY(-20px);
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition);
+    box-shadow: var(--shadow-md);
+    border-top: 1px solid rgba(180, 122, 145, 0.14);
+    width: 100%;
+    max-height: calc(100vh - 90px);
+    overflow-y: auto;
+  }
+
+  .navbar-collapse.show {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 5px;
+  }
+
+  .nav-link {
+    padding: 15px 20px !important;
+    border-radius: 10px;
+    margin: 2px 0;
+    text-align: left;
+    font-size: 16px;
+  }
+
+  .header-actions {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(75, 10, 36, 0.14);
+  }
+
+  .btn-login {
+    width: 50%;
+    justify-content: center;
+  }
+}
+
+/* Mobile Backdrop */
+.mobile-backdrop {
+  position: fixed;
+  top: 90px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(58, 47, 58, 0.32);
+  backdrop-filter: blur(5px);
+  z-index: 1029;
+}
+
+@media (max-width: 991px) {
+
+  .navbar-scrolled .navbar-collapse {
+    top: 70px;
+  }
+  
+  .navbar-scrolled + .mobile-backdrop {
+    top: 70px;
+  }
+  
+}
+/* ============================================================
+   Custom hamburger + drawer-close button (same reliable pattern
+   as the logged-in Header.jsx) -- replaces the old Bootstrap
+   .navbar-toggler / .navbar-toggler-icon markup, which depended
+   on Bootstrap's own background-image sizing and could end up
+   invisible depending on CSS load order.
+   ============================================================ */
+
+.mh-toggler-btn {
+  display: none; /* shown only <=991px below */
+
+  width: 42px;
+  height: 42px;
+
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  z-index: 1031;
+}
+
+.mh-toggler-btn span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: #ffffff;
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+/* Turn into an X when the drawer is open */
+.mh-toggler-btn span.open:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.mh-toggler-btn span.open:nth-child(2) {
+  opacity: 0;
+}
+
+.mh-toggler-btn span.open:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.mh-close-btn {
+  display: none;
+  position: absolute;
+  top: 14px;
+  right: 18px;
+
+  width: 34px;
+  height: 34px;
+
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+@media (max-width: 991px) {
+  .mh-toggler-btn {
+    display: flex;
+  }
+
+  .mh-close-btn {
+    display: flex;
+  }
+
+  .navbar-collapse {
+    padding-top: 50px;
+  }
+}

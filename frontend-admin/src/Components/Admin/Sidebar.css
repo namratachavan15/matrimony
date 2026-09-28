@@ -1,0 +1,507 @@
+/* Sidebar.css */
+.mm-sidebar {
+  width: 260px;
+  background: #4a0e17;
+  height: 100%;
+  color: white;
+  padding: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow:hidden;
+  transition: all 0.3s ease;
+  z-index: 1500;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+  border-right: 1px solid #5b1730;
+}
+
+/* Collapsed state for desktop */
+.mm-sidebar.collapsed {
+  width: 70px;
+}
+
+/* Logo Section */
+.sidebar-logo {
+  padding: 1rem 1.5rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  transition: padding 0.3s ease;
+  height:133px;
+}
+
+.logo-image {
+  margin-bottom: 1rem;
+  transition: margin 0.3s ease;
+  position: relative;
+}
+
+.logo-image img {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.logo-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  filter: blur(10px);
+  z-index: -1;
+}
+
+.logo-text h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0 0 0.25rem 0;
+  color: white !important;
+  transition: opacity 0.3s ease;
+}
+
+.logo-text p {
+  font-size: 0.8rem;
+  opacity: 0.8;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+  transition: opacity 0.3s ease;
+}
+
+/* Collapsed logo - desktop only */
+.mm-sidebar.collapsed .logo-text {
+  opacity: 0;
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
+}
+
+.mm-sidebar.collapsed .sidebar-logo {
+  padding: 2rem 0.5rem 1rem;
+}
+
+.mm-sidebar.collapsed .logo-image {
+  margin-bottom: 0;
+}
+
+.mm-sidebar.collapsed .logo-image img {
+  width: 50px;
+  height: 50px;
+}
+
+/* Navigation */
+.sidebar-nav {
+  padding: 1.5rem 0;
+  transition: padding 0.3s ease;
+  height: calc(100vh - 140px); /* adjust based on your logo height */
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.nav-section-title {
+  padding: 0 1.5rem 1rem;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.6);
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+/* Hide section title when collapsed */
+.mm-sidebar.collapsed .nav-section-title {
+  opacity: 0;
+  visibility: hidden;
+  height: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-menu li {
+  margin: 0;
+}
+
+/* Sidebar Links */
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
+  position: relative;
+  border: none;
+  background: transparent;
+  width: 100%;
+  cursor: pointer;
+}
+
+.sidebar-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  padding-left: 1.75rem;
+}
+
+.sidebar-link.active {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  border-right: 3px solid white;
+}
+
+.link-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex: 1;
+  transition: gap 0.3s ease;
+}
+
+.sidebar-icon {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  flex-shrink: 0;
+  min-width: 24px;
+  text-align: center;
+}
+
+.link-text {
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  color:white;
+}
+
+.active-indicator {
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  margin-left: auto;
+  transition: opacity 0.3s ease;
+}
+
+.dropdown-arrow {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  flex-shrink: 0;
+}
+
+/* Collapsed state links - desktop only */
+.mm-sidebar.collapsed .sidebar-link {
+  justify-content: center;
+  padding: 1rem 0.5rem;
+}
+
+.mm-sidebar.collapsed .link-content {
+  justify-content: center;
+  gap: 0;
+}
+
+.mm-sidebar.collapsed .link-text,
+.mm-sidebar.collapsed .dropdown-arrow,
+.mm-sidebar.collapsed .active-indicator {
+  opacity: 0;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+/* Submenu */
+.sidebar-submenu {
+  list-style: none;
+  padding: 0.5rem 0;
+  margin: 0;
+  background: rgba(0, 0, 0, 0.1);
+  animation: slideDown 0.3s ease;
+  /* max-height: 400px;
+  overflow-y: auto; */
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.submenu-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.5rem 0.75rem 3rem;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  border-left: 2px solid transparent;
+  white-space: nowrap;
+}
+
+.submenu-link:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: white;
+  border-left-color: rgba(255, 255, 255, 0.3);
+}
+
+.submenu-link.active {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-left-color: white;
+}
+
+.submenu-icon {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  flex-shrink: 0;
+  min-width: 16px;
+  text-align: center;
+}
+
+/* Collapsed submenu - hide when sidebar is collapsed */
+.mm-sidebar.collapsed .sidebar-submenu {
+  display: none !important;
+}
+
+/* Sidebar Footer */
+.sidebar-footer {
+  margin-top: auto;
+  padding: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.sidebar-help p {
+  margin: 0 0 0.25rem 0;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar-help small {
+  opacity: 0.7;
+  font-size: 0.8rem;
+  transition: opacity 0.3s ease;
+}
+
+/* Hide footer when collapsed */
+.mm-sidebar.collapsed .sidebar-footer {
+  opacity: 0;
+  visibility: hidden;
+  height: 0;
+  padding: 0;
+  margin: 0;
+  border: none;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .mm-sidebar {
+    left: -260px;
+    width: 260px;
+    transform: translateX(-100%);
+  }
+
+  .mm-sidebar.show {
+    left: 0;
+    transform: translateX(0);
+  }
+
+  /* On mobile, ignore collapsed state and always show full sidebar */
+  .mm-sidebar.collapsed {
+    width: 260px;
+    left: -260px;
+    transform: translateX(-100%);
+  }
+
+  .mm-sidebar.collapsed.show {
+    left: 0;
+    transform: translateX(0);
+  }
+
+  /* Ensure all content is visible on mobile */
+  .mm-sidebar.show .logo-text,
+  .mm-sidebar.show .nav-section-title,
+  .mm-sidebar.show .link-text,
+  .mm-sidebar.show .dropdown-arrow,
+  .mm-sidebar.show .active-indicator,
+  .mm-sidebar.show .sidebar-footer {
+    opacity: 1 !important;
+    visibility: visible !important;
+    height: auto !important;
+    width: auto !important;
+    overflow: visible !important;
+  }
+
+  .mm-sidebar.show .sidebar-link {
+    justify-content: space-between !important;
+    padding: 1rem 1.5rem !important;
+  }
+
+  .mm-sidebar.show .link-content {
+    justify-content: flex-start !important;
+    gap: 1rem !important;
+  }
+
+  .mm-sidebar.show .sidebar-submenu {
+    display: block !important;
+  }
+}
+
+/* Scrollbar */
+.sidebar-nav::-webkit-scrollbar {
+  width: 4px;
+}
+
+.sidebar-nav::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+}
+
+.sidebar-nav::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Dropdown button specific styles */
+.sidebar-dropdown .sidebar-link {
+  position: relative;
+}
+
+.dropdown-arrow-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  transition: opacity 0.3s ease;
+}
+
+/* Collapsed state for dropdown arrow */
+.mm-sidebar.collapsed .dropdown-arrow-container {
+  opacity: 0;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+/* Ensure proper spacing for dropdown items */
+.sidebar-dropdown .link-content {
+  flex: 1;
+}
+/* =========================================
+   SIDEBAR HOVER TEXT COLOR FIX
+   ========================================= */
+
+/* Main sidebar links */
+.mm-sidebar .sidebar-link,
+.mm-sidebar .sidebar-link:visited {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.mm-sidebar .sidebar-link:hover,
+.mm-sidebar .sidebar-link:focus,
+.mm-sidebar .sidebar-link:active {
+  color: #ffffff !important;
+}
+
+/* Main link text */
+.mm-sidebar .sidebar-link:hover .link-text,
+.mm-sidebar .sidebar-link:focus .link-text,
+.mm-sidebar .sidebar-link:active .link-text {
+  color: #ffffff !important;
+}
+
+/* Main icons */
+.mm-sidebar .sidebar-link:hover .sidebar-icon,
+.mm-sidebar .sidebar-link:focus .sidebar-icon,
+.mm-sidebar .sidebar-link:active .sidebar-icon {
+  color: #ffffff !important;
+}
+
+/* Active main menu */
+.mm-sidebar .sidebar-link.active,
+.mm-sidebar .sidebar-link.active .link-text,
+.mm-sidebar .sidebar-link.active .sidebar-icon {
+  color: #ffffff !important;
+}
+
+
+/* =========================================
+   SUBMENU HOVER
+   ========================================= */
+
+.mm-sidebar .submenu-link,
+.mm-sidebar .submenu-link:visited {
+  color: rgba(255, 255, 255, 0.75) !important;
+}
+
+.mm-sidebar .submenu-link:hover,
+.mm-sidebar .submenu-link:focus,
+.mm-sidebar .submenu-link:active {
+  color: #ffffff !important;
+}
+
+/* Submenu text */
+.mm-sidebar .submenu-link:hover span,
+.mm-sidebar .submenu-link:focus span,
+.mm-sidebar .submenu-link:active span {
+  color: #ffffff !important;
+}
+
+/* Submenu icons */
+.mm-sidebar .submenu-link:hover .submenu-icon,
+.mm-sidebar .submenu-link:focus .submenu-icon,
+.mm-sidebar .submenu-link:active .submenu-icon {
+  color: #ffffff !important;
+}
+
+/* Active submenu */
+.mm-sidebar .submenu-link.active,
+.mm-sidebar .submenu-link.active span,
+.mm-sidebar .submenu-link.active .submenu-icon {
+  color: #ffffff !important;
+}
+
+
+/* =========================================
+   DROPDOWN BUTTON TEXT
+   ========================================= */
+
+.mm-sidebar button.sidebar-link {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+
+.mm-sidebar button.sidebar-link:hover,
+.mm-sidebar button.sidebar-link:focus {
+  color: #ffffff !important;
+}
+
+.mm-sidebar button.sidebar-link:hover .link-text,
+.mm-sidebar button.sidebar-link:focus .link-text,
+.mm-sidebar button.sidebar-link:hover .sidebar-icon {
+  color: #ffffff !important;
+}

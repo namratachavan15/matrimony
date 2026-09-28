@@ -1,0 +1,14 @@
+package org.stormsofts.matrimony.model;
+
+public enum NotificationType {
+    PROFILE_LIKED,
+    INTEREST_RECEIVED,
+    INTEREST_ACCEPTED,
+    INTEREST_DECLINED,
+    PROFILE_VIEWED,
+    MUTUAL_MATCH,
+    CONTACT_REQUEST_RECEIVED,
+    CONTACT_REQUEST_ACCEPTED,
+    PROFILE_VERIFIED,
+    PROFILE_REJECTED
+}

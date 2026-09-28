@@ -1,0 +1,176 @@
+/* =========================================================
+   DESIGN SYSTEM — GLOBAL POLISH LAYER
+   Additive only: keyframes, scrollbar, skeleton loaders and
+   page-transition utilities shared by every screen. Nothing
+   here renames or removes an existing class.
+   ========================================================= */
+
+/* ---------- Custom scrollbar (subtle, on-brand) ---------- */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--brand-gold-400) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--brand-gold-400);
+  border-radius: 8px;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-gold-600);
+}
+
+/* ---------- Shared keyframes ---------- */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes shimmer {
+  0%   { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+/* ---------- Page entrance transition ----------
+   Wrapped around routed content in App.jsx. Purely visual —
+   no effect on routing, state, or data. */
+.page-fade {
+  animation: fadeUp 0.45s ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-fade { animation: none; }
+}
+
+/* ---------- Generic skeleton loader ----------
+   Opt-in utility: add className="skeleton" to any placeholder
+   element that doesn't already have bespoke loading styling. */
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(
+    90deg,
+    var(--ivory-200) 0%,
+    #ffffff 50%,
+    var(--ivory-200) 100%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
+  border-radius: var(--radius-sm);
+  color: transparent !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton { animation: none; }
+}
+
+/* =========================================================
+   BASE ELEMENT POLISH — low-specificity fallback styling.
+   Any existing component class (e.g. .btn-login, .submit-btn)
+   already wins on specificity, so this only smooths out plain
+   <button>/<input>/<select>/<textarea> elements that don't yet
+   have bespoke styling. Purely visual, no markup changes.
+   ========================================================= */
+button {
+  font-family: var(--font-body);
+  border-radius: var(--radius-sm);
+  transition: var(--transition-normal);
+}
+
+input,
+select,
+textarea {
+  font-family: var(--font-body);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  transition: var(--transition-fast);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--brand-gold-500);
+  box-shadow: 0 0 0 3px rgba(224, 195, 152, 0.15);
+  outline: none;
+}
+
+/* ---------- Reusable premium button system ----------
+   Opt-in utility classes; existing bespoke buttons are
+   untouched unless a component explicitly adopts these. */
+.btn-premium-primary,
+.btn-premium-secondary,
+.btn-premium-outline,
+.btn-premium-danger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 26px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.2px;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: var(--transition-normal);
+}
+
+.btn-premium-primary {
+  background: linear-gradient(135deg, var(--brand-primary), var(--brand-primary-dark));
+  color: #fff;
+  box-shadow: var(--shadow-soft);
+}
+.btn-premium-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-medium);
+}
+
+.btn-premium-secondary {
+  background: var(--brand-gold-500);
+  color: #fff;
+}
+.btn-premium-secondary:hover {
+  background: var(--brand-gold-600);
+  transform: translateY(-2px);
+}
+
+.btn-premium-outline {
+  background: transparent;
+  color: var(--brand-primary);
+  border-color: var(--brand-primary);
+}
+.btn-premium-outline:hover {
+  background: var(--brand-primary);
+  color: #fff;
+}
+
+.btn-premium-danger {
+  background: var(--danger);
+  color: #fff;
+}
+.btn-premium-danger:hover {
+  filter: brightness(0.92);
+  transform: translateY(-2px);
+}
+
+.btn-premium-primary:disabled,
+.btn-premium-secondary:disabled,
+.btn-premium-outline:disabled,
+.btn-premium-danger:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}

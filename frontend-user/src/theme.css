@@ -1,0 +1,155 @@
+/* =========================================================
+   PREMIUM MATRIMONIAL THEME — GLOBAL DESIGN TOKENS
+   Soft, light palette: blush pink, dusty rose, warm cream,
+   subtle lavender and peach-gold accents on soft-white surfaces.
+   This file only adds typography/token polish on top of the
+   existing component CSS — no layout or class names removed.
+   (Variable names kept as -maroon-/-gold- for drop-in compatibility
+   with every component that already references them; the values
+   underneath are now the light pastel palette.)
+   ========================================================= */
+
+:root {
+  /* Brand palette — dusty rose / blush (kept var names for compatibility) */
+  --brand-maroon-900: #8a5a72;
+  --brand-maroon-800: #a8677f;
+  --brand-maroon-700: #b47a91;
+  --brand-maroon-600: #c68fa6;
+  --brand-maroon-500: #d1a3b8;
+
+  /* Peach-gold accent */
+  --brand-gold-700: #c9a878;
+  --brand-gold-600: #d4b585;
+  --brand-gold-500: #e0c398;
+  --brand-gold-400: #f4e4c9;
+  --brand-gold-300: #faeeda;
+
+  /* Lavender accent (new — used for soft section backgrounds & tags) */
+  --brand-lavender-600: #9670c9;
+  --brand-lavender-500: #a78bda;
+  --brand-lavender-300: #e6ddf5;
+  --brand-lavender-100: #f4f0fb;
+
+  /* Soft-white / cream / blush surfaces */
+  --ivory-50: #fdfbf8;
+  --ivory-100: #f7f0f5;
+  --ivory-200: #efe1ea;
+
+  /* Warm plum-grey text — dark enough for contrast, never harsh black */
+  --charcoal-900: #3a2f3a;
+  --charcoal-700: #6b5a68;
+  --charcoal-500: #8a7a87;
+
+  /* Semantics */
+  --brand-primary: var(--brand-maroon-800);
+  --brand-primary-dark: var(--brand-maroon-900);
+  --brand-accent: var(--brand-gold-500);
+  --brand-surface: var(--ivory-50);
+
+  /* Shape & elevation */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --shadow-soft: 0 10px 30px rgba(138, 90, 114, 0.10);
+  --shadow-medium: 0 16px 40px rgba(138, 90, 114, 0.16);
+  --shadow-strong: 0 24px 60px rgba(138, 90, 114, 0.22);
+
+  /* Typography */
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* -----------------------------------------------------------
+     Canonical design-token aliases (requested naming scheme).
+     These simply point at the palette above so every file can
+     reference one consistent vocabulary going forward.
+     ----------------------------------------------------------- */
+  --primary: var(--brand-primary);
+  --primary-dark: var(--brand-primary-dark);
+  --secondary: var(--brand-gold-600);
+  --accent: var(--brand-accent);
+  --background: var(--ivory-100);
+  --surface: var(--ivory-50);
+  --card: #ffffff;
+  --text-primary: var(--charcoal-900);
+  --text-secondary: var(--charcoal-700);
+  --text-muted: var(--charcoal-500);
+  --border: rgba(138, 90, 114, 0.12);
+  --success: #1f8a55;
+  --warning: #d4b585;
+  --danger: #b3261e;
+  --hover: rgba(138, 90, 114, 0.06);
+
+  --radius-xl: 26px;
+  --shadow-sm: 0 4px 14px rgba(58, 47, 58, 0.08);
+  --shadow-md: var(--shadow-soft);
+  --shadow-lg: var(--shadow-medium);
+
+  /* Spacing scale (4px base) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  --transition-fast: 150ms ease;
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html, body {
+  font-family: var(--font-body);
+  color: var(--charcoal-900);
+  background-color: var(--ivory-50);
+}
+
+h1, h2, h3,
+.section-title,
+.about-header h1,
+.stories-header h1,
+.testimonials-header h2,
+.contact-header h1,
+.gallery-title,
+.footer-logo,
+.logo-main,
+.auth-header h2,
+.mission-card h3,
+.team-title {
+  font-family: var(--font-display);
+  letter-spacing: 0.2px;
+}
+
+.section-subtitle,
+.language-tag,
+.gallery-subtitle {
+  font-family: var(--font-body);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--brand-gold-600);
+}
+
+/* Gold divider used across landing sections */
+.divider {
+  width: 70px;
+  height: 3px;
+  margin: 18px auto 22px;
+  background: linear-gradient(90deg, var(--brand-maroon-700), var(--brand-gold-500));
+  border-radius: 3px;
+}
+
+/* Consistent focus ring for accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--brand-gold-500);
+  outline-offset: 2px;
+}
+
+/* Smooth, subtle motion only — respects reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}

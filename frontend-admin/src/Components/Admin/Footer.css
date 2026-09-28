@@ -1,0 +1,93 @@
+/* Footer.css */
+.mm-footer {
+  position: fixed;
+  bottom: 0;
+  left: 260px;
+  right: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  padding: 1rem 2rem;
+  font-size: 0.9rem;
+  color: #718096;
+  border-top: 1px solid rgba(107, 18, 32, 0.1);
+  z-index: 999;
+  transition: all 0.3s ease;
+}
+
+.app-wrapper.collapsed .mm-footer {
+  left: 80px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-text {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+}
+
+.footer-icon {
+  font-size: 0.8rem;
+  opacity: 0.7;
+}
+
+.footer-message {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.heart-icon {
+  color: #7a1725;
+  font-size: 0.8rem;
+  animation: heartbeat 2s infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Mobile */
+@media (max-width: 1024px) {
+  .mm-footer {
+    left: 0;
+    padding: 1rem 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .mm-footer {
+    padding: 0.875rem 1rem;
+  }
+  
+  .footer-content {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+  
+  .footer-text,
+  .footer-message {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .mm-footer {
+    padding: 0.75rem 1rem;
+  }
+  
+  .footer-text,
+  .footer-message {
+    font-size: 0.75rem;
+  }
+}

@@ -56,7 +56,9 @@ function App() {
       <Routes>
         {/* Login route */}
         <Route path="/login" element={<Login />} />
-
+ {/* Public: OTP registration happens before the user has any token */}
+        <Route path="/short-registration" element={<ShortRegister />} />
+        <Route path="/verify-otp" element={<VerifyOtp />} />
         {/* Protected routes */}
         {currentUser ? (
           <Route path="/" element={<AppLayout />}>

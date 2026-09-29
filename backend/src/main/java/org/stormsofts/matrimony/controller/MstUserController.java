@@ -277,38 +277,52 @@ public class MstUserController {
 
 
     @PostMapping("/send-otp")
-    public String sendOtp(@RequestBody Map<String, String> request) {
+    public ResponseEntity<String> sendOtp(@RequestBody Map<String, String> request) {
         String mobile = request.get("mobile");
+        if (mobile == null || !mobile.trim().matches("^\\+?\\d{10,13}$")) {
+            return ResponseEntity.badRequest().body("Enter a valid mobile number.");
+        }
+        mobile = mobile.trim();
         if (!mobile.startsWith("+")) {
             mobile = "+91" + mobile; // prepend country code
         }
 
-        String otp = String.valueOf(100000 + new Random().nextInt(900000));
+        long wait = otpService.resendWaitSeconds(mobile);
+        if (wait > 0) {
+            return ResponseEntity.status(429).body("Please wait " + wait + " seconds before requesting another OTP.");
+        }
 
+        String otp = String.valueOf(100000 + new java.security.SecureRandom().nextInt(900000));
+        try {
+            otpService.sendOtpSms(mobile, otp);
+        } catch (IllegalStateException e) {
+            return ResponseEntity.status(503).body(e.getMessage());
+        }
+        // Only remember the OTP once it has actually been sent.
         otpService.saveOtp(mobile, otp);
 
-        // Send SMS
-        otpService.sendOtpSms(mobile, otp);
-
-        System.out.println("OTP for " + mobile + " : " + otp); // debug
-
-        return "OTP Sent";
+        return ResponseEntity.ok(otpService.isDevMode() && !otpService.isSmsConfigured()
+                ? "OTP generated (dev mode - check the server console)"
+                : "OTP Sent");
     }
 
 
     @PostMapping("/verify-otp")
     public String verifyOtp(@RequestBody Map<String, String> request) {
         String mobile = request.get("mobile");
+        if (mobile == null) return "Mobile number is required";
+        mobile = mobile.trim();
         if (!mobile.startsWith("+")) {
             mobile = "+91" + mobile;
         }
 
         String otp = request.get("otp");
-        String storedOtp = otpService.getOtp(mobile);
-        if (storedOtp == null) return "OTP expired or not found";
-        if (!storedOtp.equals(otp)) return "Invalid OTP";
-
-        otpService.removeOtp(mobile);
+        switch (otpService.verifyOtp(mobile, otp)) {
+            case NOT_FOUND_OR_EXPIRED: return "OTP expired or not found";
+            case TOO_MANY_ATTEMPTS: return "Too many wrong attempts. Please request a new OTP.";
+            case INVALID: return "Invalid OTP";
+            default: break; // OK
+        }
 
         String uname = request.get("uname");
         String email = request.get("email");
@@ -325,11 +339,11 @@ public class MstUserController {
         user.setStatus(1);
         user.setVstatus(1);
         user.setLogStatus(1);
-user.setLogCount(0);
-user.setViewcount(0);
-user.setProfileViewcount(0);
-user.setStarcount(0);
-      //  user.setJdate(Instant.now()); // set current timestamp
+        user.setLogCount(0);
+        user.setViewcount(0);
+        user.setProfileViewcount(0);
+        user.setStarcount(0);
+        //  user.setJdate(Instant.now()); // set current timestamp
 
 
 

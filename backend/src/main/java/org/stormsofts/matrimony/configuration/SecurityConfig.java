@@ -57,6 +57,17 @@ public class SecurityConfig {
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/uploads/**").permitAll()
 
+                        // Spring forwards unhandled controller exceptions to /error. If /error is
+                        // protected, the client sees a misleading 403 instead of the real error
+                        // (e.g. a 500). Letting it through makes real failures visible.
+                        .requestMatchers("/error").permitAll()
+
+                        // Public: OTP registration happens BEFORE the user has a token.
+                        // Only these two POST endpoints are opened; the rest of /api/admin/user/**
+                        // still needs a JWT. (OtpService limits attempts and expires OTPs.)
+                        .requestMatchers(HttpMethod.POST,
+                                "/api/admin/user/send-otp", "/api/admin/user/verify-otp").permitAll()
+
                         // Public: read-only reference/master data and landing-page content.
                         // These are needed to render the registration form dropdowns and the
                         // public landing page (stories, testimonials, "about") *before* the

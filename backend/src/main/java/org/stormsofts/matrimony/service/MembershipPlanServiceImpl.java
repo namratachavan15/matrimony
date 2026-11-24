@@ -1,6 +1,7 @@
 package org.stormsofts.matrimony.service;
 
-import jakarta.annotation.PostConstruct;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -87,79 +88,55 @@ public class MembershipPlanServiceImpl implements MembershipPlanService {
         membershipPlanRepository.deleteById(id);
     }
 
+    /**
+     * Runs once the app is fully started. Seeds each default plan ONLY if its
+     * code is missing, so (a) first boot creates FREE/SILVER/GOLD/PREMIUM,
+     * (b) FREE is always guaranteed (every user without a paid subscription
+     * falls back to it), and (c) plans the admin later edits are never
+     * overwritten. After this, the admin panel is the single source of truth.
+     */
     @Override
-    @PostConstruct
+    @EventListener(ApplicationReadyEvent.class)
     @Transactional
     public void ensureDefaultPlansSeeded() {
-        if (membershipPlanRepository.count() > 0) {
+        seed("FREE", "Free", "0", 36500, "Get started and explore matches.",
+                "Basic Profile,Limited Searches,Limited Interests", 1, false,
+                10, 5, 2, false, false, false, false, false);
+        seed("SILVER", "Silver", "999", 90, "More reach, more conversations.",
+                "Advanced Search,More Interests,More Profile Views,Messaging,Contact Requests", 2, false,
+                50, 50, 20, true, true, false, false, false);
+        seed("GOLD", "Gold", "1499", 180, "Stand out with higher visibility.",
+                "All Silver Features,Higher Contact Limits,Profile Boost,Priority Recommendations", 3, true,
+                100, 100, 50, true, true, true, true, false);
+        seed("PREMIUM", "Premium", "2499", 365, "Maximum visibility and access.",
+                "All Gold Features,Maximum Access,Priority Visibility,Premium Badge", 4, false,
+                null, null, null, true, true, true, true, true);
+    }
+
+    private void seed(String code, String name, String price, int days, String description, String features,
+                      int order, boolean popular, Integer views, Integer interests, Integer contacts,
+                      boolean advancedSearch, boolean contactAccess, boolean boost, boolean priority, boolean badge) {
+        if (membershipPlanRepository.findByCode(code).isPresent()) {
             return;
         }
-
-        MembershipPlan free = new MembershipPlan();
-        free.setCode("FREE");
-        free.setName("Free");
-        free.setPrice(BigDecimal.ZERO);
-        free.setDurationDays(36500); // effectively unlimited, never expires
-        free.setDescription("Get started and explore matches.");
-        free.setFeatures("Basic Profile,Limited Searches,Limited Interests");
-        free.setDisplayOrder(1);
-        free.setDailyProfileViewLimit(10);
-        free.setMonthlyInterestLimit(5);
-        free.setMonthlyContactRequestLimit(2);
-        free.setAdvancedSearch(false);
-        free.setMessagingEnabled(true);
-        free.setContactRequestAccess(false);
-        membershipPlanRepository.save(free);
-
-        MembershipPlan silver = new MembershipPlan();
-        silver.setCode("SILVER");
-        silver.setName("Silver");
-        silver.setPrice(new BigDecimal("999"));
-        silver.setDurationDays(90);
-        silver.setDescription("More reach, more conversations.");
-        silver.setFeatures("Advanced Search,More Interests,More Profile Views,Messaging,Contact Requests");
-        silver.setDisplayOrder(2);
-        silver.setDailyProfileViewLimit(50);
-        silver.setMonthlyInterestLimit(50);
-        silver.setMonthlyContactRequestLimit(20);
-        silver.setAdvancedSearch(true);
-        silver.setContactRequestAccess(true);
-        membershipPlanRepository.save(silver);
-
-        MembershipPlan gold = new MembershipPlan();
-        gold.setCode("GOLD");
-        gold.setName("Gold");
-        gold.setPrice(new BigDecimal("1499"));
-        gold.setDurationDays(180);
-        gold.setDescription("Stand out with higher visibility.");
-        gold.setFeatures("All Silver Features,Higher Contact Limits,Profile Boost,Priority Recommendations");
-        gold.setDisplayOrder(3);
-        gold.setPopular(true);
-        gold.setDailyProfileViewLimit(100);
-        gold.setMonthlyInterestLimit(100);
-        gold.setMonthlyContactRequestLimit(50);
-        gold.setAdvancedSearch(true);
-        gold.setContactRequestAccess(true);
-        gold.setProfileBoost(true);
-        gold.setPriorityVisibility(true);
-        membershipPlanRepository.save(gold);
-
-        MembershipPlan premium = new MembershipPlan();
-        premium.setCode("PREMIUM");
-        premium.setName("Premium");
-        premium.setPrice(new BigDecimal("2499"));
-        premium.setDurationDays(365);
-        premium.setDescription("Maximum visibility and access.");
-        premium.setFeatures("All Gold Features,Maximum Access,Priority Visibility,Premium Badge");
-        premium.setDisplayOrder(4);
-        premium.setDailyProfileViewLimit(null); // unlimited
-        premium.setMonthlyInterestLimit(null);
-        premium.setMonthlyContactRequestLimit(null);
-        premium.setAdvancedSearch(true);
-        premium.setContactRequestAccess(true);
-        premium.setProfileBoost(true);
-        premium.setPriorityVisibility(true);
-        premium.setPremiumBadge(true);
-        membershipPlanRepository.save(premium);
+        MembershipPlan p = new MembershipPlan();
+        p.setCode(code);
+        p.setName(name);
+        p.setPrice(new BigDecimal(price));
+        p.setDurationDays(days);
+        p.setDescription(description);
+        p.setFeatures(features);
+        p.setDisplayOrder(order);
+        p.setPopular(popular);
+        p.setDailyProfileViewLimit(views);          // null = unlimited
+        p.setMonthlyInterestLimit(interests);
+        p.setMonthlyContactRequestLimit(contacts);
+        p.setAdvancedSearch(advancedSearch);
+        p.setMessagingEnabled(true);
+        p.setContactRequestAccess(contactAccess);
+        p.setProfileBoost(boost);
+        p.setPriorityVisibility(priority);
+        p.setPremiumBadge(badge);
+        membershipPlanRepository.save(p);
     }
 }

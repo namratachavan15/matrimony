@@ -41,6 +41,7 @@ import VerifyOtp from './Components/Admin/Pages/VerifyOtp';
 import VerificationPage from './Components/Admin/Pages/VerificationPage';
 import ReportsPage from './Components/Admin/Pages/ReportsPage';
 import MembershipPlans from './Components/Admin/Pages/MembershipPlans';
+import MembershipPayments from './Components/Admin/Pages/MembershipPayments';
 
 
 function App() {
@@ -92,7 +93,8 @@ function App() {
             <Route path="/short-registration" element={<ShortRegister/>}/>
             <Route path="/verify-otp" element={<VerifyOtp />} />
             <Route path="/verification" element={<VerificationPage />} />
-          <Route path="membership-plans" element={<MembershipPlans />} />
+            <Route path="membership-plans" element={<MembershipPlans />} />
+            <Route path="membership-payments" element={<MembershipPayments />} />
             <Route path="/reports" element={<ReportsPage />} />
           </Route>
         ) : (

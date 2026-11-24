@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useUserContext } from "../State/UserContext";
 import { FaUser, FaLock, FaArrowRight, FaUserPlus } from "react-icons/fa";
 
@@ -9,6 +9,9 @@ const Login = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+  // e.g. landing-page "Login to Buy" sends the user back to /membership after login
+  const redirectTo = location.state?.from || "/";
 
   const { login } = useUserContext();
 
@@ -27,7 +30,7 @@ const Login = () => {
 
     try {
       await login({ ...formData, urole: "user" });
-      navigate("/");
+      navigate(redirectTo, { replace: true });
     } catch (err) {
       console.error(err);
       setError(

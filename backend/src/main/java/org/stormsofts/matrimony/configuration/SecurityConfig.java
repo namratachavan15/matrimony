@@ -86,17 +86,12 @@ public class SecurityConfig {
                                 "/api/admin/height/**", "/api/admin/heightbetween/**",
                                 "/api/admin/blood/**", "/api/admin/family/**", "/api/admin/otherinfo/**",
                                 "/api/admin/about/**", "/api/admin/story/**", "/api/admin/testimonial/**",
-                                "/api/admin/marriage/**"
+                                "/api/admin/marriage/**",
+                                // Pricing page: plan list is public (read-only); buying still needs a JWT.
+                                "/api/membership/plans"
                         ).permitAll()
 
-                        // Everything else requires a valid authenticated user (JWT).
-                        // NOTE: /api/admin/user/** is currently shared by both the admin panel
-                        // and the logged-in user's own self-service actions (profile fetch,
-                        // change password, etc.), so it is intentionally left at "any authenticated
-                        // user" here rather than ROLE_ADMIN, to avoid breaking those existing flows.
-                        // True admin-only master-data management endpoints will be locked down to
-                        // ROLE_ADMIN in a follow-up security pass once admin/user routes are cleanly
-                        // separated (see Part 10 / Part 6 notes).
+
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);

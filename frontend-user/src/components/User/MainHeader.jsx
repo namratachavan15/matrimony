@@ -267,9 +267,6 @@ const MainHeader = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
   
-  
-  
-  
 
   const handleNavClick = (path, sectionId) => {
     navigate(path);
@@ -284,6 +281,7 @@ const MainHeader = () => {
 
   const menuItems = [
     { name: "Home", path: "/", id: "home" },
+    { name: "Plans", path: "/plans", id: "plans" },
     { name: "About", path: "/about", id: "about" },
     { name: "Story", path: "/story", id: "story" },
     { name: "Testimonials", path: "/testimonial", id: "testimonial" },

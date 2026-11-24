@@ -56,6 +56,7 @@ const AppLayout = () => {
         />
 
         <Route path="/about" element={<MainLanding />} />
+        <Route path="/plans" element={<MainLanding />} />
         <Route path="/story" element={<MainLanding />} />
         <Route path="/testimonial" element={<MainLanding />} />
         <Route path="/maingallery" element={<MainLanding />} />

@@ -5,6 +5,7 @@ import Testimonials from "./Pages/Testimonials";
 import Stories from "./Pages/Stories";
 import MainGallery from "./Pages/MainGallery";
 import Contact from "./Pages/Contact";
+import LandingPlans from "./Components/LandingPlans";
 
 
 const MainLanding = () => {
@@ -13,6 +14,10 @@ const MainLanding = () => {
 
         <section id="home" className="page-section">
           <Home />
+        </section>
+  
+        <section id="plans" className="page-section">
+          <LandingPlans />
         </section>
   
         <section id="about" className="page-section">

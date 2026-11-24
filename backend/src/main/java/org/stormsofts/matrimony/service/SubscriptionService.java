@@ -31,6 +31,8 @@ public interface SubscriptionService {
     void markPaymentFailed(Integer userId, String razorpayOrderId);
 
     // ---- Admin ----
+    /** Admin: every payment with the user + plan details, newest first. status == null means all. */
+    Page<AdminPaymentRowDTO> getAllPaymentsForAdmin(PaymentStatus status, Pageable pageable);
     long countActiveByPlan(Integer planId);
     long countActiveTotal();
     long countExpiredTotal();

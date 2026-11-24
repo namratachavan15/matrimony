@@ -11,6 +11,7 @@ import org.stormsofts.matrimony.repository.MstContactRequestRepository;
 import org.stormsofts.matrimony.repository.MstInterestRepository;
 import org.stormsofts.matrimony.repository.MstPaymentRepository;
 import org.stormsofts.matrimony.repository.MstSubscriptionRepository;
+import org.stormsofts.matrimony.repository.MstUserRepository;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -18,8 +19,12 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.temporal.ChronoUnit;
+import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
 public class SubscriptionServiceImpl implements SubscriptionService {
@@ -30,6 +35,7 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     @Autowired private MstInterestRepository interestRepository;
     @Autowired private MstContactRequestRepository contactRequestRepository;
     @Autowired private RazorpayService razorpayService;
+    @Autowired private MstUserRepository userRepository;
 
     private MembershipPlan freePlan() {
         return planRepository.findByCode("FREE")
@@ -245,6 +251,44 @@ public class SubscriptionServiceImpl implements SubscriptionService {
     @Override
     public Page<MstPayment> getPaymentHistory(Integer userId, Pageable pageable) {
         return paymentRepository.findByUserIdOrderByCreatedAtDesc(userId, pageable);
+    }
+
+    @Override
+    public Page<AdminPaymentRowDTO> getAllPaymentsForAdmin(PaymentStatus status, Pageable pageable) {
+        Page<MstPayment> page = status == null
+                ? paymentRepository.findAllByOrderByCreatedAtDesc(pageable)
+                : paymentRepository.findByStatusOrderByCreatedAtDesc(status, pageable);
+
+        // Batch-load users / plans / subscriptions for this page (no N+1 queries).
+        List<MstPayment> rows = page.getContent();
+        Map<Integer, MstUser> users = userRepository
+                .findAllById(rows.stream().map(MstPayment::getUserId).distinct().toList())
+                .stream().collect(Collectors.toMap(MstUser::getId, Function.identity()));
+        Map<Integer, MembershipPlan> plans = planRepository
+                .findAllById(rows.stream().map(MstPayment::getPlanId).distinct().toList())
+                .stream().collect(Collectors.toMap(MembershipPlan::getId, Function.identity()));
+        Map<Integer, MstSubscription> subs = subscriptionRepository
+                .findAllById(rows.stream().map(MstPayment::getSubscriptionId)
+                        .filter(java.util.Objects::nonNull).distinct().toList())
+                .stream().collect(Collectors.toMap(MstSubscription::getId, Function.identity()));
+
+        return page.map(p -> {
+            MstUser u = users.get(p.getUserId());
+            MembershipPlan plan = plans.get(p.getPlanId());
+            MstSubscription s = p.getSubscriptionId() == null ? null : subs.get(p.getSubscriptionId());
+            return new AdminPaymentRowDTO(
+                    p.getId(), p.getUserId(),
+                    u != null ? u.getUname() : "Deleted user",
+                    u != null ? u.getUmobile() : null,
+                    u != null ? u.getEmail() : null,
+                    plan != null ? plan.getName() : "Unknown",
+                    p.getAmount(), p.getCurrency(), p.getStatus(),
+                    p.getRazorpayPaymentId(), p.getRazorpayOrderId(),
+                    s != null ? s.getStatus() : null,
+                    s != null ? s.getStartDate() : null,
+                    s != null ? s.getEndDate() : null,
+                    p.getCreatedAt());
+        });
     }
 
     @Override

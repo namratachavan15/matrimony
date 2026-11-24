@@ -336,6 +336,21 @@ export default function Sidebar({ isCollapsed, isMobileOpen, closeMobile }) {
               {isActiveLink('/membership-plans') && <div className="active-indicator"></div>}
             </Link>
           </li>
+          {/* Membership Payments */}
+          <li>
+            <Link 
+              to="/membership-payments" 
+              className={`sidebar-link ${isActiveLink('/membership-payments') ? 'active' : ''}`}
+              onClick={closeMobile}
+              data-tooltip="Membership Payments"
+            >
+              <div className="link-content">
+                <FaDollarSign className="sidebar-icon" />
+                {!isCollapsed && <span className="link-text">Membership Payments</span>}
+              </div>
+              {isActiveLink('/membership-payments') && <div className="active-indicator"></div>}
+            </Link>
+          </li>
           {/* User Master Dropdown */}
           <li className="sidebar-dropdown">
           <button

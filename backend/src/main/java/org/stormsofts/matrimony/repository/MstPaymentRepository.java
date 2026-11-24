@@ -16,6 +16,10 @@ public interface MstPaymentRepository extends JpaRepository<MstPayment, Integer>
 
     Page<MstPayment> findByUserIdOrderByCreatedAtDesc(Integer userId, Pageable pageable);
 
+    // Admin: all payments (optionally filtered by status), newest first.
+    Page<MstPayment> findAllByOrderByCreatedAtDesc(Pageable pageable);
+    Page<MstPayment> findByStatusOrderByCreatedAtDesc(PaymentStatus status, Pageable pageable);
+
     @org.springframework.data.jpa.repository.Query(
             "select coalesce(sum(p.amount), 0) from MstPayment p where p.status = :status")
     BigDecimal sumAmountByStatus(@org.springframework.data.repository.query.Param("status") PaymentStatus status);

@@ -34,7 +34,8 @@ public class MembershipPlanController {
 
     @GetMapping("/api/membership/plans")
     public ResponseEntity<?> getActivePlans() {
-        if (AuthUtil.currentUserId() == null) return ResponseEntity.status(401).body("Not authenticated.");
+        // Public read-only list (also allowed in SecurityConfig) so the pricing page
+        // renders for visitors and logged-in users alike. Only ACTIVE plans are returned.
         List<MembershipPlanDTO> plans = planService.getActivePlans().stream()
                 .map(MembershipPlanDTO::fromEntity).toList();
         return ResponseEntity.ok(plans);
@@ -91,6 +92,25 @@ public class MembershipPlanController {
         } catch (NoSuchElementException e) {
             return ResponseEntity.status(404).body(e.getMessage());
         }
+    }
+
+    /** Admin: who bought which plan, amount, transaction id, status. ?status=SUCCESS|PENDING|FAILED (optional). */
+    @GetMapping("/api/admin/membership/payments")
+    public ResponseEntity<?> adminListPayments(@RequestParam(defaultValue = "0") int page,
+                                               @RequestParam(defaultValue = "20") int size,
+                                               @RequestParam(required = false) String status) {
+        ResponseEntity<?> denied = denyIfNotAdmin();
+        if (denied != null) return denied;
+        org.stormsofts.matrimony.model.PaymentStatus ps = null;
+        if (status != null && !status.isBlank() && !"ALL".equalsIgnoreCase(status)) {
+            try {
+                ps = org.stormsofts.matrimony.model.PaymentStatus.valueOf(status.toUpperCase());
+            } catch (IllegalArgumentException e) {
+                return ResponseEntity.badRequest().body("Invalid status.");
+            }
+        }
+        return ResponseEntity.ok(subscriptionService.getAllPaymentsForAdmin(
+                ps, org.springframework.data.domain.PageRequest.of(Math.max(page, 0), Math.min(Math.max(size, 1), 100))));
     }
 
     @GetMapping("/api/admin/membership/stats")

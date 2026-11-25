@@ -158,9 +158,18 @@ const updateStarCount = async (userId, newStarCount) => {
     }
   };
 
+  // The users list needs the admin JWT. Loading it once at app start (before login)
+  // fails with 401 and the list stays empty until a manual refresh. So load it only
+  // after the stored session is read, and reload whenever the logged-in admin changes.
   useEffect(() => {
-    fetchUsers();
-  }, []);
+    if (loadingUser) return;
+    if (currentUser) {
+      fetchUsers();
+    } else {
+      setUsers([]);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loadingUser, currentUser]);
 
   const createUser = async (user) => {
     try {
